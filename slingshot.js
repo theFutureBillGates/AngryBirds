@@ -8,15 +8,41 @@ class Slingshot{
        }
       this.slingshot = Constraint.create(options);
       this.pointB = point2;
+      this.slingOne = loadImage("sprites/sling1.png")
+      this.slingTwo = loadImage("sprites/sling2.png")
+      this.slingThree = loadImage("sprites/sling3.png")
+
       World.add(world,this.slingshot);
    }
    display(){
+       image(this.slingOne,210,20);
+       image(this.slingTwo,180,20);
+      
        if(this.slingshot.bodyA!=null){
         var pointA = this.slingshot.bodyA.position;
        
-        
-        line(pointA.x,pointA.y,this.pointB.x,this.pointB.y);
-        
+        push();
+        stroke(48,22,8);    
+        if(pointA.x<220){
+            strokeWeight(7);
+      
+            line(pointA.x-25,pointA.y,this.pointB.x-10,this.pointB.y);
+            line(pointA.x-25,pointA.y,this.pointB.x+30,this.pointB.y-3);
+    
+            image(this.slingThree,pointA.x-30,pointA.y-10,15,30);
+
+        }
+        else{
+            strokeWeight(7);
+      
+            line(pointA.x+25,pointA.y,this.pointB.x-10,this.pointB.y);
+            line(pointA.x+25,pointA.y,this.pointB.x+30,this.pointB.y-3);
+    
+            image(this.slingThree,pointA.x+30,pointA.y-10,15,30);
+        }
+
+      
+        pop();
        }
       
    }
